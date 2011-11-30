@@ -1,0 +1,7 @@
+*~
+*.class
+#*.clj#
+pom.xml
+docs/
+notes/
+*.jar

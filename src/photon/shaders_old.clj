@@ -1,14 +1,15 @@
 (ns photon.opengl.shaders
-  (use [photon.opengl.core]
+  (use [photon.opengl.jogl]
        [clojure.contrib.string :only (as-str)])
   (require [clojure.string]
 	   [clojure.contrib.str-utils2 :as str-utils :only [blank?]])
-  (import [javax.media.opengl GL4]
-	  [com.jogamp.opengl.util.glsl ShaderUtil]))
+  (import [com.jogamp.opengl.util.glsl ShaderUtil]))
 
-(def-gl-const gl-vertex-shader)
-(def-gl-const gl-fragment-shader)
-(def-gl-const gl-geometry-shader)
+(defglconst gl3 gl-vertex-shader)
+(defglconst gl3 gl-fragment-shader)
+(defglconst gl3 gl-geometry-shader)
+
+
 
 (def fixed-pipeline
      "Fixed pipeline shader"
