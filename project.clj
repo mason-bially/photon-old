@@ -8,5 +8,5 @@
 		 [org.clojure/tools.macro "0.1.1"]
 		 [org.clojars.nakkaya/vecmath "1"]]
   :dev-dependencies [[swank-clojure "1.3.0"]]
-  :main photon.examples.parametric-viewer
+  :main photon.examples.dungeon
   :disable-deps-clean true)

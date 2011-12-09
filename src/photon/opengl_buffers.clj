@@ -1,26 +1,26 @@
 (ns photon.opengl
   "#Buffers
-
 This file handels vertex buffers, vertex arrays, attribute binding, and (element buffers?).")
 
 ;;; ##GL Constants
 
 ;; Buffer target enums
-(defglconst gl4 gl-array-buffer)
+(defglconst gl2 gl-array-buffer)
 
 ;; Buffer data usage hints
-(defglconst gl4 gl-static-draw)
-(defglconst gl4 gl-dynamic-draw)
+(defglconst gl2 gl-static-draw)
+(defglconst gl2 gl-dynamic-draw)
 
 ;; Buffer Draw Types
-(defglconst gl4 gl-triangles)
-(defglconst gl4 gl-triangle-strip)
+(defglconst gl2 gl-triangles)
+(defglconst gl2 gl-triangle-strip)
 (defglconst gl2 gl-quads)
 (defglconst gl2 gl-quad-strip)
-(defglconst gl4 gl-points)
-(defglconst gl4 gl-lines)
-(defglconst gl4 gl-line-strip)
+(defglconst gl2 gl-points)
+(defglconst gl2 gl-lines)
+(defglconst gl2 gl-line-strip)
 
+(defglconst gl2 gl-float)
 
 ;;; ##Vertex buffers
 
@@ -37,20 +37,25 @@ This file handels vertex buffers, vertex arrays, attribute binding, and (element
 
 (defn fill-attribute-buffers
   [buffers binding-data]
-  (reduce (fn [reduction next]
-	    (assoc reduction (next 0) (next 1)))
-	  {}
-	  (map (fn [[key value]]
-		 (let [data (FloatBuffer/wrap (key binding-data))]
-		   (doto *gl*
-		     (.glBindBuffer gl-array-buffer (:gl-int value))
-		     (.glBufferData gl-array-buffer (* (alength data) 4) data gl-static-draw)
-		     (.glBindBuffer gl-array-buffer (:gl-int value))))
-		 [key value])
-	       buffers)))
+  (vec (map (fn [buffer]
+	 (let [data (FloatBuffer/wrap (float-array (get binding-data (:attribute buffer))))]
+	   (doto *gl*
+	     (.glBindBuffer gl-array-buffer (:gl-int buffer))
+	     (.glBufferData gl-array-buffer (* (alength (.array data)) 4) data gl-static-draw)))
+	 buffer)
+       buffers)))
 
 (defn bind-attribute-buffers
-  [buffers])
+  [buffers]
+  (vec (map (fn [buffer]
+	      (let [attribute (get-attrib (opengl-str (:attribute buffer)))]
+		(doto *gl*
+		  (.glEnableVertexAttribArray attribute)
+		  (.glBindBuffer gl-array-buffer (:gl-int buffer))
+		  (.glVertexAttribPointer attribute 4 gl-float false 0 0))))
+	    buffers)))
+
+
 
 ;;; ##Vertex arrays
 

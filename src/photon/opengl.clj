@@ -2,15 +2,16 @@
   "Wraps JOGL and Opengl core graphics opengl graphics include. This is the core namespace, and provides many of the helper functions and macros."
   (use [clojure.core.incubator :only (defmacro-)]
        [clojure.tools.macro :only (macrolet)])
-  (require [clojure.string :as str-util])
+  (require [clojure.string :as str-util]
+	   [photon.matrix :as matrix])
   (import [java.nio FloatBuffer IntBuffer]
-	  [javax.media.opengl GL2 GL3 GL4]
+	  [javax.media.opengl GL2 GL3bc GL4bc]
 	  [com.jogamp.opengl.util.glsl ShaderUtil]))
 
 ;; The different versions of opengl
 (def gl2 GL2)
-(def gl3 GL3)
-(def gl4 GL4)
+(def gl3 GL3bc)
+(def gl4 GL4bc)
 
 (def ^{:dynamic true
        :doc "The current gl context, because this is so transient it is a bound variable."}
@@ -69,6 +70,12 @@ It is also notable the way that this code gets at these static classes is a bit 
   "Get any logs that this object may have, from opengl" :gl-type)
 
 
+;;; #Other helpers
+(defmacro- opengl-str [symbol]
+  `(if (keyword? ~symbol)
+     (str-util/replace-first (str ~symbol) ":" "")
+     (str ~symbol)))
+     
 ;;; #Loading other sections
 
 (load "opengl_shaders")

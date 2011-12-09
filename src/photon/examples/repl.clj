@@ -1,10 +1,8 @@
 (ns photon.examples.repl
   "A repl helper file"
-  (require [photon.app :as app])
-  (use [photon.matrix]
-       [photon.opengl]))
-
-(defglconst gl4 gl-color-buffer-bit)
+  (require [photon.app :as app]
+	   [photon.matrix :as matrix])
+  (use [photon.opengl]))
 
 ;;; #Debug tools
 
@@ -20,18 +18,6 @@
 			  (Thread/sleep 1000)))))
     (. start)))
 
-;; Some shapes:
-
-(def cube {"position" [-1.0  1.0  1.0 1.0
-			-1.0 -1.0  1.0 1.0
-			 1.0  1.0  1.0 1.0
-	      		 1.0 -1.0  1.0 1.0] 
-	   "normal" [-1.0 -1.0 -1.0 0.0
-		      -1.0 -1.0 -1.0 0.0
-		      -1.0 -1.0 -1.0 0.0
-		      -1.0 -1.0 -1.0 0.0]})
-
-(def test-fn (ref (fn [] ())))
 
 ;;; #Actual app
 
@@ -42,14 +28,14 @@
     (doto *gl*
       (. setSwapInterval 1))
     (send state assoc :scene [])))
-
+  
 (defn app-display [drawable]
   (with-gl (app/gl-context drawable)
+    (app-shader-hoister)
     (doto *gl*
       (. glClearColor 0.2 0.2 0.4 0.0)
       (. glClear gl-color-buffer-bit))
-    )
-  (dosync (alter frames-so-far + 1)))
+  (dosync (alter frames-so-far + 1))))
 
 (defn app-dispose [drawable]
   (with-gl (app/gl-context drawable)
@@ -66,8 +52,8 @@
   []
   (let [canvas (app/canvas)]
     (app/attach-gl-listener canvas
-			    :init #(app-init %)
-			    :display #(app-display %)
-			    :dispose #(app-dispose %)
-			    :reshape #(app-reshape %1 %2 %3 %4 %5))
+			    :init #'app-init
+			    :display #'app-display
+			    :dispose #'app-dispose
+			    :reshape #'app-reshape)
     (app/start canvas)))
