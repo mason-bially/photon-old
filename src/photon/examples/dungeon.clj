@@ -149,7 +149,7 @@
    float bumps = g - floor(g);
    float wave = sin((unitNoise + fragPosition.y) * 3.0 * pi);
 
-   return vec3(bumps, ((bumps/2.0) + (wave/32.0)), ((bumps/4.0) + (wave/64.0)));
+   return vec3(((bumps/2.0) + (wave/32.0)), bumps, ((bumps/4.0) + (wave/64.0)));
  }
 
  void main() 
@@ -424,8 +424,8 @@
 
 (defn on-key [k]
   (condp = k
-	 KeyEvent/VK_UP (send state update-in [:camera] #(move-camera % 0.1))
-	 KeyEvent/VK_DOWN (send state update-in [:camera] #(move-camera % -0.1))
+	 KeyEvent/VK_DOWN (send state update-in [:camera] #(move-camera % 0.25))
+	 KeyEvent/VK_UP (send state update-in [:camera] #(move-camera % -0.3))
 	 KeyEvent/VK_LEFT (send state update-in [:camera] #(rotate-camera % -0.05))
 	 KeyEvent/VK_RIGHT (send state update-in [:camera] #(rotate-camera % 0.05))
 	 KeyEvent/VK_A (send state update-in [:camera] #(tilt-camera % 0.05))

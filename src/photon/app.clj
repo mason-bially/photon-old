@@ -7,10 +7,11 @@
 	   [com.jogamp.opengl.util Animator]))
 
 ;; Intialize the jogl library.
-(. GLProfile initSingleton false)
+;; Always call this before running anything else.
+(defn init-photon []
+  (. GLProfile initSingleton false))
 
 ;;; ##Capabilities
-
 
 (defmacro- caps-not-nil
   [obj func var] ;;TODO: clean this up with macrolets
@@ -105,24 +106,27 @@ Uses a new thread to stop the animator, perform the `on-close` callback and then
   [canvas & {:keys [name size on-close] :or {name "A Photon App" size '[800 600] on-close (fn [frame] nil)}}]
   (let [frame (new java.awt.Frame name)
 	animator (new Animator)]
-    (doto frame
-      (. setSize (nth size 0) (nth size 1))
-      (. setLayout (new java.awt.BorderLayout))
-      (. addWindowListener
-	 (proxy [java.awt.event.WindowAdapter] []
+    (. frame setVisible true)
+    (let [insets (.getInsets frame)
+          x (+ (nth size 0) (.left insets) (.right insets))
+          y (+ (nth size 1) (.top insets) (.bottom insets))]
+      (doto frame
+        (. setSize x y)
+        (. setLayout (new java.awt.BorderLayout))
+        (. addWindowListener
+           (proxy [java.awt.event.WindowAdapter] []
 	   (windowClosing
-	    [^java.awt.event.WindowEvent e]
-	    (. (new Thread
-		    (proxy [Runnable] []
-		      (run
-		       []
-		       (. animator stop)
-		       (on-close frame)
-		       (. frame dispose))))
-	       start))))
-      (. add canvas java.awt.BorderLayout/CENTER)
-      (. validate)
-      (. setVisible true))
+             [^java.awt.event.WindowEvent e]
+             (. (new Thread
+                     (proxy [Runnable] []
+                       (run
+                         []
+                         (. animator stop)
+                         (on-close frame)
+                         (. frame dispose))))
+                start))))
+        (. add canvas java.awt.BorderLayout/CENTER)
+        (. validate)))
     (doto animator
       (. add canvas)
       (. start))

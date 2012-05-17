@@ -3123,7 +3123,7 @@ $(document).ready(function() {
 
 })
 </script><title>photon -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">photon</h1><h2 class="project-version">0.0.2</h2><br /><p>An idiomatic wrapper for OpenGL using JOGL.</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr><tr><td class="dep-name">org.clojure/core.incubator</td><td class="dotted"><hr /></td><td class="dep-version">0.1.0</td></tr><tr><td class="dep-name">org.clojure/tools.macro</td><td class="dotted"><hr /></td><td class="dep-version">0.1.1</td></tr><tr><td class="dep-name">org.clojars.nakkaya/vecmath</td><td class="dotted"><hr /></td><td class="dep-version">1</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">swank-clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#"></a></li><li><a href="#photon.app">photon.app</a></li><li><a href="#photon.matrix">photon.matrix</a></li><li><a href="#photon.opengl">photon.opengl</a></li><li><a href="#photon.opengl">photon.opengl</a></li><li><a href="#photon.opengl">photon.opengl</a></li><li><a href="#photon.glsl">photon.glsl</a></li><li><a href="#photon.glsl">photon.glsl</a></li><li><a href="#photon.examples.repl">photon.examples.repl</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#" name=""><h1 class="project-name"></h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>You can find most of OpenGL Java classes at:
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr><tr><td class="dep-name">org.clojure/core.incubator</td><td class="dotted"><hr /></td><td class="dep-version">0.1.0</td></tr><tr><td class="dep-name">org.clojure/tools.macro</td><td class="dotted"><hr /></td><td class="dep-version">0.1.1</td></tr><tr><td class="dep-name">org.clojars.nakkaya/vecmath</td><td class="dotted"><hr /></td><td class="dep-version">1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#"></a></li><li><a href="#photon.examples.example">photon.examples.example</a></li><li><a href="#photon.core">photon.core</a></li><li><a href="#photon.app">photon.app</a></li><li><a href="#photon.matrix">photon.matrix</a></li><li><a href="#photon.opengl">photon.opengl</a></li><li><a href="#photon.opengl">photon.opengl</a></li><li><a href="#photon.opengl">photon.opengl</a></li><li><a href="#photon.glsl">photon.glsl</a></li><li><a href="#photon.glsl">photon.glsl</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#" name=""><h1 class="project-name"></h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>You can find most of OpenGL Java classes at:
 <a href="http://jogamp.org/deployment/jogamp-next/javadoc/jogl/javadoc/">http://jogamp.org/deployment/jogamp-next/javadoc/jogl/javadoc/</a></p>
 </td><td class="codes"></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defproject photon &quot;0.0.2&quot;
@@ -3132,16 +3132,137 @@ $(document).ready(function() {
 		 [org.clojure/core.incubator &quot;0.1.0&quot;]
 		 [org.clojure/tools.macro &quot;0.1.1&quot;]
 		 [org.clojars.nakkaya/vecmath &quot;1&quot;]]
-  :dev-dependencies [[swank-clojure &quot;1.3.0&quot;]]
-  :main photon.examples.dungeon
-  :disable-deps-clean true)</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#photon.app" name="photon.app"><h1 class="project-name">photon.app</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Provides support for building applications. Namely creating photon (and opengl) drawable objects and providing helper functions to access those capabilities. In addition it provides support for event handlers and creating simple opengl only applications.</p>
+  :native-dependencies [[org.clojars.biallym/jogl-native-all &quot;2.0-0&quot;]]
+  :profiles {:dev {:plugins [[lein-native &quot;1.0.5&quot;]]}}
+  :main photon.examples.dungeon)</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#photon.examples.example" name="photon.examples.example"><h1 class="project-name">photon.examples.example</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>A list of ideal use cases and explanations. Not fully implemented</p>
+</td><td class="codes"><pre class="brush: clojure">(ns photon.examples.example
+  (require [photon.core :as photon]))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(def renderer
+  &quot;Systems wrap the core rendering functions and utilities that come with the library.&quot;
+  (photon.make-system :name &quot;A Test!&quot; :size [800 600] :default true))</pre></td></tr><tr><td class="docs"><p>The default system lives in <code>photon/*system*</code>.</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>This function attaches a debug thread which prints fps for the current system.</p>
+</td><td class="codes"><pre class="brush: clojure">(photon.debug-frames)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(def camera
+  &quot;Cameras are viewports and determine how the world is rendered.&quot;
+  (photon.make-camera))</pre></td></tr><tr><td class="docs"><p>The main camera is the one the world is rendered from.
+Alternatively you can set the :set-main key to true when making the camera.</p>
+</td><td class="codes"><pre class="brush: clojure">(photon.set-main-camera camera)</pre></td></tr><tr><td class="docs"><p>Attach photon's simple input handler to the camera.</p>
+</td><td class="codes"><pre class="brush: clojure">(photon.attach-input camera)</pre></td></tr><tr><td class="docs"><p>There are a number of different mesh building functions.</p>
+</td><td class="codes"><pre class="brush: clojure">(def sphere-mesh
+  &quot;Parametric meshes can be built by mapping functions over ranges of numbers&quot;
+     (let [sphere-fn (fn [u v]
+		       (let [cir (Math/sqrt (- 1.0 (Math/pow v 2)))
+			     x (* cir (Math/cos u))
+			     y (* cir (Math/sin u))
+			     z v]
+			 [x y z]))]
+       (photon.mesh/parametric-shape)
+       :u {:begin 0.0 :end (* Math/PI 4.0) :step (* Math/PI 0.125)}
+       :v {:begin -1.0 :end 1.0 :step 0.125}
+       :pos sphere-fn
+       :norm sphere-fn))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#photon.core" name="photon.core"><h1 class="project-name">photon.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(ns photon.core
+  (require [photon.app :as app]
+           [photon.matrix :as matrix]
+           [photon.opengl :as opengl])
+  (use [clojure.core.incubator :only (defmacro-)])
+  (import [java.awt.event KeyEvent]))</pre></td></tr><tr><td class="docs"><h1>System</h1>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>The current default system</p>
+</td><td class="codes"><pre class="brush: clojure">(def ^{:dynamic true}
+  *system*
+  nil)</pre></td></tr><tr><td class="docs"><p>Macro to assist in the creation of system app/context/gl handlers</p>
+</td><td class="codes"><pre class="brush: clojure">(defmacro- make-app-with-gl
+  [drawable &amp; body]
+  `(opengl/with-gl (app/gl-context ~drawable)
+     ~@body))</pre></td></tr><tr><td class="docs"><p>Sets up basic render state</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- make-app-init
+  [state]
+  (fn [drawable]
+    (make-app-with-gl drawable
+      ;
+      (.setSwapInterval opengl/*gl* 1))))</pre></td></tr><tr><td class="docs"><p>Executes rendering calls</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- make-app-display
+  [state]
+  (fn [drawable]
+    (make-app-with-gl drawable
+      ())))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn- make-app-dispose
+  [state]
+  (fn [drawable]
+    (make-app-with-gl drawable
+      ())))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn- make-app-reshape
+  [state]
+  (fn [drawable x y w h]
+    (make-app-with-gl drawable
+      ())))</pre></td></tr><tr><td class="docs"><p>Makes a generic system around all the namespaces. Includes a rendering system and numerous utility options.</p>
+
+<ul>
+<li><code>state</code> -> The agent that holds the majority of the system's current state.</li>
+<li><code>canvas</code> -> The canvas being rendered on.</li>
+<li><code>frame</code> -> The frame wrapping the canvas.</li>
+</ul>
+</td><td class="codes"><pre class="brush: clojure">(defn make-system
+  [&amp; {:keys [name size default]
+      :or {name &quot;A Photon App&quot; size '[800 600] default true}}]
+  (let [state (agent '{})
+        canvas (app/canvas)
+        frame (app/start canvas :name name :size size)]
+    (app/attach-gl-listener canvas
+                            :init (make-app-init state)
+                            :display (make-app-display state)
+                            :dispose (make-app-dispose state)
+                            :reshape (make-app-reshape state))
+    (-&gt; '{}
+        (assoc :state state)
+        (assoc :app-canvas canvas)
+        (assoc :app-frame frame)
+        ((fn [x]
+           (when default
+             (alter-var-root (var *system*) #(identity %2) x)))))))</pre></td></tr><tr><td class="docs"><p>Bind the <code>*system*</code> var.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmacro with-system
+  [system &amp; body]
+  `(binding [*system* ~system]
+     ~@body))</pre></td></tr><tr><td class="docs"><h1>Camera</h1>
+</td><td class="codes"></td></tr><tr><td class="docs"><h1>Utilities</h1>
+</td><td class="codes"></td></tr><tr><td class="docs"><h1>Debuggers</h1>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>Attaches a frame watcher thread to watch the current frame count.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn debug-framecount
+  [&amp; {:keys [system] :or {system *system*}}]
+  (let [state (:state system)]
+    ;; Intializes state
+    (send state assoc :debug-framecount-count (ref 0))
+    ;; Counts frames, with attached gl-listener
+    (app/attach-gl-listener (:app-canvas system)
+                            :display (fn [drawable]
+                                       (if (agent-error state)
+                                         (println (agent-error state) state)
+                                         (send state (fn [dict-state]
+                                                       (let [count (:debug-framecount-count dict-state)]
+                                                         (dosync (alter count + 1))
+                                                         dict-state))))))
+    ;; Push thread
+    (let [thread
+          (new Thread
+               (proxy [Runnable] []
+                 (run []
+                   (while true
+                     (let [count (:debug-framecount-count @state)]
+                       (println @count)
+                       (dosync (ref-set count 0))
+                       (Thread/sleep 1000))))))]
+      (send state assoc :debug-framecount-thread thread)
+      (. thread start)
+      thread)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#photon.app" name="photon.app"><h1 class="project-name">photon.app</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Provides support for building applications. Namely creating photon (and opengl) drawable objects and providing helper functions to access those capabilities. In addition it provides support for event handlers and creating simple opengl only applications.</p>
 </td><td class="codes"><pre class="brush: clojure">(ns photon.app
   (use [clojure.core.incubator :only (defmacro-)])
   (require [photon.opengl])
   (import [javax.media.opengl GLAutoDrawable GLEventListener GLProfile GLCapabilities]
 	   [javax.media.opengl.awt GLCanvas]
-	   [com.jogamp.opengl.util Animator]))</pre></td></tr><tr><td class="docs"><p>Intialize the jogl library.</p>
-</td><td class="codes"><pre class="brush: clojure">(. GLProfile initSingleton false)</pre></td></tr><tr><td class="docs"><h2>Capabilities</h2>
+	   [com.jogamp.opengl.util Animator]))</pre></td></tr><tr><td class="docs"><p>Intialize the jogl library.
+Always call this before running anything else.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn init-photon []
+  (. GLProfile initSingleton false))</pre></td></tr><tr><td class="docs"><h2>Capabilities</h2>
 </td><td class="codes"></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defmacro- caps-not-nil
   [obj func var] ;;TODO: clean this up with macrolets
@@ -3219,24 +3340,27 @@ $(document).ready(function() {
   [canvas &amp; {:keys [name size on-close] :or {name &quot;A Photon App&quot; size '[800 600] on-close (fn [frame] nil)}}]
   (let [frame (new java.awt.Frame name)
 	animator (new Animator)]
-    (doto frame
-      (. setSize (nth size 0) (nth size 1))
-      (. setLayout (new java.awt.BorderLayout))
-      (. addWindowListener
-	 (proxy [java.awt.event.WindowAdapter] []
+    (. frame setVisible true)
+    (let [insets (.getInsets frame)
+          x (+ (nth size 0) (.left insets) (.right insets))
+          y (+ (nth size 1) (.top insets) (.bottom insets))]
+      (doto frame
+        (. setSize x y)
+        (. setLayout (new java.awt.BorderLayout))
+        (. addWindowListener
+           (proxy [java.awt.event.WindowAdapter] []
 	   (windowClosing
-	    [^java.awt.event.WindowEvent e]
-	    (. (new Thread
-		    (proxy [Runnable] []
-		      (run
-		       []
-		       (. animator stop)
-		       (on-close frame)
-		       (. frame dispose))))
-	       start))))
-      (. add canvas java.awt.BorderLayout/CENTER)
-      (. validate)
-      (. setVisible true))
+             [^java.awt.event.WindowEvent e]
+             (. (new Thread
+                     (proxy [Runnable] []
+                       (run
+                         []
+                         (. animator stop)
+                         (on-close frame)
+                         (. frame dispose))))
+                start))))
+        (. add canvas java.awt.BorderLayout/CENTER)
+        (. validate)))
     (doto animator
       (. add canvas)
       (. start))
@@ -3576,57 +3700,11 @@ row0 row1 row2 row3))))})</p>
   (make-program
    (make-program-part :vertex (:vertex defedshader) :uniforms (:vertex-uniforms defedshader) :attributes (:attributes defedshader))
    (make-program-part :fragment (:fragment defedshader) :uniforms (:fragment-uniforms defedshader))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#photon.glsl" name="photon.glsl"><h1 class="project-name">photon.glsl</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(ns photon.glsl)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(load &quot;glsl_types&quot;)</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#photon.glsl" name="photon.glsl"><h1 class="project-name">photon.glsl</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(ns photon.glsl)</pre></td></tr><tr><td class="docs"><p>http://pragprog.com/magazines/2011-07/growing-a-dsl-with-clojure</p>
+</td><td class="codes"></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#photon.glsl" name="photon.glsl"><h1 class="project-name">photon.glsl</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns photon.glsl)</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(def types
      {:float {:size 1 :bind &quot;f&quot;}
       :vec2 {:size 2 :bind &quot;f2&quot;}
-      :vec3 {:size 3 :bind &quot;f3&quot;}})</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#photon.examples.repl" name="photon.examples.repl"><h1 class="project-name">photon.examples.repl</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>A repl helper file</p>
-</td><td class="codes"><pre class="brush: clojure">(ns photon.examples.repl
-  (require [photon.app :as app]
-	   [photon.matrix :as matrix])
-  (use [photon.opengl]))</pre></td></tr><tr><td class="docs"><h1>Debug tools</h1>
-</td><td class="codes"></td></tr><tr><td class="docs"><p>Frame watcher</p>
-</td><td class="codes"><pre class="brush: clojure">(def frames-so-far (ref 0))
-(defn kick-fps-watcher []
-  &quot;Starts a thread for watching frames, store in a varible to stop when done.&quot;
-  (doto (new Thread (proxy [Runnable] []
-		   (run []
-			(while true
-			  (println @frames-so-far)
-			  (dosync (ref-set frames-so-far 0))
-			  (Thread/sleep 1000)))))
-    (. start)))</pre></td></tr><tr><td class="docs"><h1>Actual app</h1>
-</td><td class="codes"></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def state (agent {}))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn app-init [drawable]
-  (with-gl (app/gl-context drawable)
-    (doto *gl*
-      (. setSwapInterval 1))
-    (send state assoc :scene [])))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn app-display [drawable]
-  (with-gl (app/gl-context drawable)
-    (app-shader-hoister)
-    (doto *gl*
-      (. glClearColor 0.2 0.2 0.4 0.0)
-      (. glClear gl-color-buffer-bit))
-  (dosync (alter frames-so-far + 1))))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn app-dispose [drawable]
-  (with-gl (app/gl-context drawable)
-    ()))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn app-reshape [drawable x y w h]
-  (with-gl (app/gl-context drawable)
-    (send state assoc :proj-matrix (projection-matrix 1.0 100.0 1.0 (/ h w)))
-    (println (@test-fn))))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn kick-app
-  &quot;Builds the canvas, a basic listener, and lambda wrapped function calls, to allow for dynamic redefinition. Returns AWT frame object.&quot;
-  []
-  (let [canvas (app/canvas)]
-    (app/attach-gl-listener canvas
-			    :init #'app-init
-			    :display #'app-display
-			    :dispose #'app-dispose
-			    :reshape #'app-reshape)
-    (app/start canvas)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_"></li><li class="floating-toc-li" id="floating-toc_photon.app">photon.app</li><li class="floating-toc-li" id="floating-toc_photon.matrix">photon.matrix</li><li class="floating-toc-li" id="floating-toc_photon.opengl">photon.opengl</li><li class="floating-toc-li" id="floating-toc_photon.opengl">photon.opengl</li><li class="floating-toc-li" id="floating-toc_photon.opengl">photon.opengl</li><li class="floating-toc-li" id="floating-toc_photon.glsl">photon.glsl</li><li class="floating-toc-li" id="floating-toc_photon.glsl">photon.glsl</li><li class="floating-toc-li" id="floating-toc_photon.examples.repl">photon.examples.repl</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
+      :vec3 {:size 3 :bind &quot;f3&quot;}})</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_"></li><li class="floating-toc-li" id="floating-toc_photon.examples.example">photon.examples.example</li><li class="floating-toc-li" id="floating-toc_photon.core">photon.core</li><li class="floating-toc-li" id="floating-toc_photon.app">photon.app</li><li class="floating-toc-li" id="floating-toc_photon.matrix">photon.matrix</li><li class="floating-toc-li" id="floating-toc_photon.opengl">photon.opengl</li><li class="floating-toc-li" id="floating-toc_photon.opengl">photon.opengl</li><li class="floating-toc-li" id="floating-toc_photon.opengl">photon.opengl</li><li class="floating-toc-li" id="floating-toc_photon.glsl">photon.glsl</li><li class="floating-toc-li" id="floating-toc_photon.glsl">photon.glsl</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
        SyntaxHighlighter.all()</script></body></html>

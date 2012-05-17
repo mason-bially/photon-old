@@ -7,6 +7,6 @@
 		 [org.clojure/core.incubator "0.1.0"]
 		 [org.clojure/tools.macro "0.1.1"]
 		 [org.clojars.nakkaya/vecmath "1"]]
-  :dev-dependencies [[swank-clojure "1.3.0"]]
-  :main photon.examples.dungeon
-  :disable-deps-clean true)
+  :native-dependencies [[org.clojars.biallym/jogl-native-all "2.0-0"]]
+  :profiles {:dev {:plugins [[lein-native "1.0.5"]]}}
+  :main photon.examples.dungeon)
