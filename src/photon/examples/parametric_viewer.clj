@@ -1,8 +1,7 @@
 (ns photon.examples.parametric-viewer
   (require [photon.app :as app]
-	   [photon.opengl.shaders :as shaders]
-	   [incanter.core :as i])
-  (use [photon.opengl.core]
+           [incanter.core :as i])
+  (use [photon.opengl]
        [clojure.contrib.def :only [defn-memo]])
   (import [javax.media.opengl GL GL4]
 	  [java.nio FloatBuffer IntBuffer]

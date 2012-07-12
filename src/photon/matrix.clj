@@ -1,5 +1,6 @@
 (ns photon.matrix
   "Provides immutable style matrices through the javax.vecmath library, and wrapping them in lispy style functions."
+  (:refer-clojure :exclude [identity vector])
   (import [javax.vecmath Matrix4d Vector3d Quat4d]))
 
 ;; Extend the java types with clojure.lang.seqable for easy use:

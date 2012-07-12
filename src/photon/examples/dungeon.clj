@@ -173,6 +173,16 @@
 
 ;; # Shapes:
 
+;(defmacro defpshape
+;  "A helpful pshape loader macro"
+;  [name doc-string value]
+;  (let [def-expers `(def ~name ~doc-string ~value)]
+;    (if (resolve '~name)
+;      (do
+;        ~def-expers
+;        (send-off state assoc :scene (make-scene)))
+;      ~def-expers)))
+
 (def Dome
      "Dome roof parametric shape"
      {:u {:begin -1.0
@@ -424,8 +434,8 @@
 
 (defn on-key [k]
   (condp = k
-	 KeyEvent/VK_DOWN (send state update-in [:camera] #(move-camera % 0.25))
-	 KeyEvent/VK_UP (send state update-in [:camera] #(move-camera % -0.3))
+	 KeyEvent/VK_UP (send state update-in [:camera] #(move-camera % 0.25))
+	 KeyEvent/VK_DOWN (send state update-in [:camera] #(move-camera % -0.3))
 	 KeyEvent/VK_LEFT (send state update-in [:camera] #(rotate-camera % -0.05))
 	 KeyEvent/VK_RIGHT (send state update-in [:camera] #(rotate-camera % 0.05))
 	 KeyEvent/VK_A (send state update-in [:camera] #(tilt-camera % 0.05))
